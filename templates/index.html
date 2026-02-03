@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio - Masonite{% endblock %}
+
+{% block content %}
+<div class="hero-section">
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="title-line">Bienvenido a</span>
+                <span class="title-highlight">Masonite</span>
+            </h1>
+            <!-- <p class="hero-description">
+                Un sitio web moderna con validaciones en tiempo real, 
+                navegación intuitiva y manejo robusto de errores.
+            </p> -->
+            
+            {% if session.usuario %}
+                <div class="hero-actions">
+                    <a href="{{ url_for('dashboard') }}" class="btn btn-primary btn-large">
+                        <span>Ir al Dashboard</span>
+                        <span class="btn-icon">→</span>
+                    </a>
+                </div>
+                <div class="welcome-message">
+                    <span class="welcome-icon">👋</span>
+                    <span>Hola, <strong>{{ session.usuario }}</strong></span>
+                </div>
+            {% else %}
+                <div class="hero-actions">
+                    <a href="{{ url_for('registro') }}" class="btn btn-primary btn-large">
+                        <span>Comenzar ahora</span>
+                        <span class="btn-icon">→</span>
+                    </a>
+                    <a href="{{ url_for('login') }}" class="btn btn-secondary btn-large">
+                        <span>Iniciar sesión</span>
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- <div class="features-section">
+    <div class="container">
+        <h2 class="section-title">Características principales</h2>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">✓</div>
+                <h3 class="feature-title">Validaciones en tiempo real</h3>
+                <p class="feature-description">
+                    Sistema de validación completo que verifica tus datos mientras escribes,
+                    asegurando que toda la información sea correcta antes de enviar.
+                </p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">◬</div>
+                <h3 class="feature-title">Navegación de migas de pan</h3>
+                <p class="feature-description">
+                    Siempre sabrás dónde estás con nuestra barra de navegación contextual
+                    que muestra tu ubicación en el sitio.
+                </p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">⚠</div>
+                <h3 class="feature-title">Manejo de errores</h3>
+                <p class="feature-description">
+                    Sistema robusto de captura de excepciones que proporciona mensajes
+                    claros cuando algo sale mal.
+                </p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3 class="feature-title">Seguridad</h3>
+                <p class="feature-description">
+                    Autenticación segura y protección de rutas para mantener
+                    tu información privada y protegida.
+                </p>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<div class="demo-section">
+    <div class="container">
+        <div class="demo-card">
+            <!-- <h2 class="demo-title">Prueba el manejo de errores</h2>
+            <p class="demo-description">
+                Haz clic en el botón para ver cómo la aplicación maneja las excepciones
+                de manera elegante y redirige a una página de error personalizada.
+            </p> -->
+            <a href="{{ url_for('simular_error') }}" class="btn btn-warning">
+                <span>Simular un error</span>
+                <span class="btn-icon">⚠</span>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

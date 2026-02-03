@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Masonite{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="dashboard-header">
+        <h1 class="page-title">Panel de Control</h1>
+        <p class="page-subtitle">Bienvenido, <strong>{{ session.usuario }}</strong></p>
+    </div>
+    
+    <div class="dashboard-grid">
+        <div class="dashboard-card card-primary">
+            <div class="card-icon">👤</div>
+            <h3 class="card-title">Tu Perfil</h3>
+            <p class="card-description">Ver y editar tu información personal</p>
+            <a href="{{ url_for('perfil') }}" class="card-link">
+                Ver perfil <span>→</span>
+            </a>
+        </div>
+        
+        <div class="dashboard-card card-secondary">
+            <div class="card-icon">⚙</div>
+            <h3 class="card-title">Configuración</h3>
+            <p class="card-description">Ajusta las preferencias de tu cuenta</p>
+            <a href="{{ url_for('configuracion') }}" class="card-link">
+                Configurar <span>→</span>
+            </a>
+        </div>
+        
+        <div class="dashboard-card card-tertiary">
+            <div class="card-icon">📊</div>
+            <h3 class="card-title">Estadísticas</h3>
+            <p class="card-description">Visualiza tus métricas y progreso</p>
+            <a href="#" class="card-link">
+                Ver estadísticas <span>→</span>
+            </a>
+        </div>
+        
+        <div class="dashboard-card card-warning">
+            <div class="card-icon">⚠</div>
+            <h3 class="card-title">Prueba de Errores</h3>
+            <p class="card-description">Simula un error para ver el manejo</p>
+            <a href="{{ url_for('simular_error') }}" class="card-link">
+                Simular error <span>→</span>
+            </a>
+        </div>
+    </div>
+    
+    <div class="activity-section">
+        <h2 class="section-title">Actividad Reciente</h2>
+        <div class="activity-list">
+            <div class="activity-item">
+                <div class="activity-dot"></div>
+                <div class="activity-content">
+                    <strong>Inicio de sesión exitoso</strong>
+                    <span class="activity-time">Hace unos momentos</span>
+                </div>
+            </div>
+            <div class="activity-item">
+                <div class="activity-dot"></div>
+                <div class="activity-content">
+                    <strong>Cuenta creada</strong>
+                    <span class="activity-time">Hoy</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
