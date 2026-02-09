@@ -280,6 +280,7 @@ def error_general(error):
                          error_message=f'Se produjo una excepción: {str(error)}'), 500
 
 if __name__ == '__main__':
+    import os
     #app.run(debug=True, host='0.0.0.0', port=5000) 
     # REMPLAZA ESTO:
     # app.run(debug=True, host='0.0.0.0', port=5000)
