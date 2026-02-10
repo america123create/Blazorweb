@@ -84,32 +84,35 @@ document.addEventListener('DOMContentLoaded', function() {
     correoInput.addEventListener('input', function() {
         const valor = this.value;
         
-        // Debe contener @ y terminar en .com
+        // Debe contener @ y tener al menos 2 caracteres después del último punto
         const tieneArroba = valor.includes('@');
-        const terminaEnCom = valor.endsWith('.com');
+        const regexDominioValido = /\.[^\s@]{2,}$/;
+
         
         if (valor === '') {
             mostrarFeedback(correoFeedback, '', 'hide');
             window.validacionesEstado.correo = false;
             correoInput.classList.remove('valid', 'invalid');
-        } else if (!tieneArroba && !terminaEnCom) {
-            mostrarFeedback(correoFeedback, '✕ Debe contener @ y terminar en .com', 'error');
+        } else if (!tieneArroba && !regexDominioValido.test(valor)) {
+            mostrarFeedback(correoFeedback, '✕ Debe contener @ y al menos 2 caracteres después del último punto', 'error');
             window.validacionesEstado.correo = false;
             correoInput.classList.remove('valid');
             correoInput.classList.add('invalid');
+
         } else if (!tieneArroba) {
             mostrarFeedback(correoFeedback, '✕ Debe contener @', 'error');
             window.validacionesEstado.correo = false;
             correoInput.classList.remove('valid');
             correoInput.classList.add('invalid');
-        } else if (!terminaEnCom) {
-            mostrarFeedback(correoFeedback, '✕ Debe terminar en .com', 'error');
+
+        } else if (!regexDominioValido.test(valor)) {
+            mostrarFeedback(correoFeedback, '✕ Debe tener al menos 2 caracteres después del último punto', 'error');
             window.validacionesEstado.correo = false;
             correoInput.classList.remove('valid');
             correoInput.classList.add('invalid');
+
         } else {
-            // Validación adicional de formato básico
-            const regexEmail = /^[^\s@]+@[^\s@]+\.com$/;
+            const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
             if (!regexEmail.test(valor)) {
                 mostrarFeedback(correoFeedback, '✕ Formato de correo inválido', 'error');
                 window.validacionesEstado.correo = false;
@@ -122,6 +125,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 correoInput.classList.add('valid');
             }
         }
+
         
         dispatchValidacionActualizada();
     });

@@ -120,12 +120,12 @@ def registro():
                                  recaptcha_site_key=RECAPTCHA_SITE_KEY)
         
         # Validar formato de correo
-        if not re.match(r'^[^\s@]+@[^\s@]+\.com$', correo):
-            flash('El correo debe tener un formato válido (debe contener @ y terminar en .com)', 'error')
+        if not re.match(r'^[^\s@]+@[^\s@]+\.[^\s@]{2,}$', correo):
+            flash('El correo debe tener un formato válido (debe contener @ y al menos 2 caracteres después del último punto)', 'error')
             return render_template('registro.html', 
-                                 breadcrumbs=breadcrumbs,
-                                 recaptcha_site_key=RECAPTCHA_SITE_KEY)
-        
+                                breadcrumbs=breadcrumbs,
+                                recaptcha_site_key=RECAPTCHA_SITE_KEY)
+
         # Validar contraseña
         if len(password) < 8 or not re.search(r'[A-Z]', password) or not re.search(r'[a-z]', password) or not re.search(r'\d', password):
             flash('La contraseña debe tener al menos 8 caracteres, incluir mayúsculas, minúsculas y números', 'error')
