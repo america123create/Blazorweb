@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash, ses
 from functools import wraps
 import requests
 import re
+import os
 
 app = Flask(__name__)
 app.secret_key = 'tu_clave_secreta_super_segura_aqui'
@@ -14,9 +15,8 @@ app.secret_key = 'tu_clave_secreta_super_segura_aqui'
 #RECAPTCHA_SITE_KEY = '6Lc0ZVgsAAAAAGBfI0YE3l3gbEgvHn20jyNM5wtn'  # Clave del sitio (pública)
 #RECAPTCHA_SECRET_KEY = '6Lc0ZVgsAAAAAJU89QCO2u_EGHslGx4mqFfyLA3J'  # Clave secreta (privada)
 
-import os
 app.secret_key = os.environ.get('SECRET_KEY', 'clave-secreta-temporal')
-RECAPTCHA_SITE_KEY = os.environ.get('RECAPTCHA_SITE_KEY', '6LdYU2csAAAAAH2NWZiMrEGNQ82SKwwNd2LXYAcT')
+RECAPTCHA_SITE_KEY = os.environ.get('RECAPTCHA_SITE_KEY', '6LdYU2csAAAAAH2NWZiMrEGNQ82SKwwNd2LXYAcT ')
 RECAPTCHA_SECRET_KEY = os.environ.get('RECAPTCHA_SECRET_KEY', '6LdYU2csAAAAAMIGpQTdfhLyjz4i3krWLuZkeMkh')
 
 # Base de datos simulada de usuarios
