@@ -16,8 +16,8 @@ app.secret_key = 'tu_clave_secreta_super_segura_aqui'
 #RECAPTCHA_SECRET_KEY = '6Lc0ZVgsAAAAAJU89QCO2u_EGHslGx4mqFfyLA3J'  # Clave secreta (privada)
 
 app.secret_key = os.environ.get('SECRET_KEY', 'clave-secreta-temporal')
-RECAPTCHA_SITE_KEY = os.environ.get('RECAPTCHA_SITE_KEY', '6LdYU2csAAAAAH2NWZiMrEGNQ82SKwwNd2LXYAcT ')
-RECAPTCHA_SECRET_KEY = os.environ.get('RECAPTCHA_SECRET_KEY', '6LdYU2csAAAAAMIGpQTdfhLyjz4i3krWLuZkeMkh')
+RECAPTCHA_SITE_KEY = os.environ.get('RECAPTCHA_SITE_KEY', '6Ld7nWcsAAAAAJIPVe1amYbOXvSmu4aG8uNI2d0u')
+RECAPTCHA_SECRET_KEY = os.environ.get('RECAPTCHA_SECRET_KEY', '6Ld7nWcsAAAAAMjVb3IhU6ATW4gu2syxKaKntLWY')
 
 # Base de datos simulada de usuarios
 usuarios_db = []
