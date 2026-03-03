@@ -16,6 +16,18 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 400);
         }, 5000);
     });
+    //DESPLAZAMIENTO HORIZONTAL CARRUSEL
+    const track = document.querySelector('.gallery-track');
+const btnLeft = document.querySelector('.nav-btn.left');
+const btnRight = document.querySelector('.nav-btn.right');
+
+btnRight.addEventListener('click', () => {
+  track.scrollLeft += 300;
+});
+
+btnLeft.addEventListener('click', () => {
+  track.scrollLeft -= 300;
+});
     
     // ==========================================
     // Animación de entrada para tarjetas
