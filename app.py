@@ -8,9 +8,9 @@ import os
 
 app = Flask(__name__)
 #CONEXION DE BASE DE DATOS MONGO ATLAS
-MONGO_URI = os.environ.get(
-    "MONGO_URI",
-"mongodb+srv://Ame:ame123@cluster0.bgflavz.mongodb.net/?retryWrites=true&w=majority")
+#MONGO_URI = os.environ.get(
+  #  "MONGO_URI",
+#"mongodb+srv://Ame:ame123@cluster0.bgflavz.mongodb.net/?retryWrites=true&w=majority")
 
 client = MongoClient(MONGO_URI)
 
