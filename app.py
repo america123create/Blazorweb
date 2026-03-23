@@ -10,8 +10,7 @@ app = Flask(__name__)
 #CONEXION DE BASE DE DATOS MONGO ATLAS
 MONGO_URI = os.environ.get(
     "MONGO_URI",
-    "mongodb+srv://Ame:<ame123>@cluster0.bgflavz.mongodb.net/?appName=Cluster0"
-)
+"mongodb+srv://Ame:ame123@cluster0.bgflavz.mongodb.net/?retryWrites=true&w=majority")
 
 client = MongoClient(MONGO_URI)
 
@@ -36,8 +35,8 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 #RECAPTCHA_SECRET_KEY = '6Lc0ZVgsAAAAAJU89QCO2u_EGHslGx4mqFfyLA3J'  # Clave secreta (privada)
 
 app.secret_key = os.environ.get('SECRET_KEY', 'clave-secreta-temporal')
-RECAPTCHA_SITE_KEY = os.environ.get('6LemPG0sAAAAAMgOoA_hsTFmsuFrW1eW6mgaB0Gv')
-RECAPTCHA_SECRET_KEY = os.environ.get('6LemPG0sAAAAAIRvdgkuDVYRzBdlIp-GBHH-tFVP')
+RECAPTCHA_SITE_KEY = os.environ.get('RECAPTCHA_SITE_KEY')
+RECAPTCHA_SECRET_KEY = os.environ.get('RECAPTCHA_SECRET_KEY')
 
 
 # Base de datos simulada de usuarios
