@@ -1,12 +1,32 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 from functools import wraps
+from werkzeug.utils import secure_filename
+from pymongo import MongoClient
 import requests
 import re
 import os
 
 app = Flask(__name__)
+#CONEXION DE BASE DE DATOS MONGO ATLAS
+MONGO_URI = os.environ.get(
+    "MONGO_URI",
+    "mongodb+srv://Ame:<ame123>@cluster0.bgflavz.mongodb.net/?appName=Cluster0"
+)
+
+client = MongoClient(MONGO_URI)
+
+db = client["galeria_db"]
+
+imagenes_collection = db["imagenes"]
+
+#RECAPCHA
 app.secret_key = 'tu_clave_secreta_super_segura_aqui'
 
+#CARRUSEL
+UPLOAD_FOLDER = 'static/uploads'
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'webp'}
+
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 # ==========================================
 # CONFIGURACIÓN DE reCAPTCHA
 # ==========================================
@@ -16,8 +36,8 @@ app.secret_key = 'tu_clave_secreta_super_segura_aqui'
 #RECAPTCHA_SECRET_KEY = '6Lc0ZVgsAAAAAJU89QCO2u_EGHslGx4mqFfyLA3J'  # Clave secreta (privada)
 
 app.secret_key = os.environ.get('SECRET_KEY', 'clave-secreta-temporal')
-RECAPTCHA_SITE_KEY = os.environ.get('RECAPTCHA_SITE_KEY')
-RECAPTCHA_SECRET_KEY = os.environ.get('RECAPTCHA_SECRET_KEY')
+RECAPTCHA_SITE_KEY = os.environ.get('6LemPG0sAAAAAMgOoA_hsTFmsuFrW1eW6mgaB0Gv')
+RECAPTCHA_SECRET_KEY = os.environ.get('6LemPG0sAAAAAIRvdgkuDVYRzBdlIp-GBHH-tFVP')
 
 
 # Base de datos simulada de usuarios
@@ -82,6 +102,10 @@ def index():
     return render_template('index.html', 
                          breadcrumbs=breadcrumbs,
                          recaptcha_site_key=RECAPTCHA_SITE_KEY)
+#RUTA DE PRODUCTOS
+@app.route("/productos")
+def productos_view():
+    return render_template("productos.html")
 
 # Ruta de registro
 @app.route('/registro', methods=['GET', 'POST'])
